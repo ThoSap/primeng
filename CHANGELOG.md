@@ -1,5 +1,60 @@
 # Changelog
 
+## [15.0.1](https://github.com/primefaces/primeng/tree/15.0.1) (2023-01-02)
+
+[Full Changelog](https://github.com/primefaces/primeng/compare/15.0.0...15.0.1)
+
+**New Features:**
+- Center content to Toolbar [\#12365](https://github.com/primefaces/primeng/issues/12365)
+
+**Enhancements:**
+- Table/TreeTable: filters property might have undefined value when access by key [\#12321](https://github.com/primefaces/primeng/issues/12321)
+- p-columnFilterFormElement with custom template can't adapt according to the matchMode [\#11466](https://github.com/primefaces/primeng/issues/11466)
+- Add gap when Toolbar wraps [\#12366](https://github.com/primefaces/primeng/issues/12366)
+- Deprecate Toolbar CSS classes [\#12364](https://github.com/primefaces/primeng/issues/12364)
+
+**Fixed bugs:**
+- MultiSelect: onPanelHide triggers twice [\#12382](https://github.com/primefaces/primeng/issues/12382)
+- Calendar: wrong logic of disabling the month [\#12330](https://github.com/primefaces/primeng/issues/12330)
+- Tab key in p-dialog with p-InputNumber [\#9380](https://github.com/primefaces/primeng/issues/9380)
+- Component: TabMenu incorrectly checks if routerLink is active [\#11999](https://github.com/primefaces/primeng/issues/11999)
+- FileUpload: Upload button does not expand when text is added [\#12420](https://github.com/primefaces/primeng/issues/12420)
+- Chips | Remove extra bottom spacing [\#12419](https://github.com/primefaces/primeng/issues/12419)
+- Tree with virtualScroll: Inconsistent focus [\#12351](https://github.com/primefaces/primeng/issues/12351)
+- Password: Eye icon problem in MS Edge and IE [\#12335](https://github.com/primefaces/primeng/issues/12335)
+- Button: Directive class on label change [\#12083](https://github.com/primefaces/primeng/issues/12083)
+- Table: Resizable columns in expand mode with state feature. Column sizes not properly restored [\#12398](https://github.com/primefaces/primeng/issues/12398)
+- Password input with reactive form, does not disable until clicked even though control is reported as disabled [\#12317](https://github.com/primefaces/primeng/issues/12317)
+- Tree: Multiple Selection with Checkbox - double click on chevron makes subtree to be selected [\#12347](https://github.com/primefaces/primeng/issues/12347)
+- VirtualScroll | autoSize = "true" causes browser freeze [\#12377](https://github.com/primefaces/primeng/issues/12377)
+- inputNumber | Unnecessary focus on up/down buttons [\#12369](https://github.com/primefaces/primeng/issues/12369)
+- Bug report: users are allowed to focus a speed dial action while the action panel is hidden [\#11238](https://github.com/primefaces/primeng/issues/11238)
+
+## [15.0.0](https://github.com/primefaces/primeng/tree/15.0.0) (2022-12-12)
+
+[Full Changelog](https://github.com/primefaces/primeng/compare/15.0.0-rc.1...15.0.0)
+
+**New Features:**
+- TabMenu: Tab selection is not actionable due to missing output [\#12310](https://github.com/primefaces/primeng/issues/12310)
+- pAnimate | Add leaveClass for leave animation [\#12222](https://github.com/primefaces/primeng/issues/12222)
+
+**Enhancements:**
+- Ripple doesn't support FontAwesome SVG Kit for Button/Menu/etc [\#9853](https://github.com/primefaces/primeng/issues/9853)
+- MultiSelect | Add selected value to original event [\#12059](https://github.com/primefaces/primeng/issues/12059)
+
+**Fixed bugs:**
+- PrimeNG Table OnEditComplete passing empty event parameters once fired [\#12299](https://github.com/primefaces/primeng/issues/12299)
+- Galleria: change detection not working when changing some input properties [\#12181](https://github.com/primefaces/primeng/issues/12181)
+- Editor: Not displaying correctly in dialog after content change and dialog reopen [\#12195](https://github.com/primefaces/primeng/issues/12195)
+- DataView: DataView shows Empty Message even if loading [\#12157](https://github.com/primefaces/primeng/issues/12157)
+- ToggleButton | Label of basic button is unexpectedly shifted to the left [\#12216](https://github.com/primefaces/primeng/issues/12216)
+- Calendar | Unexpected focus happens in disabled mode [\#12282](https://github.com/primefaces/primeng/issues/12282)
+- Component: OverlayPanel [\#12273](https://github.com/primefaces/primeng/issues/12273)
+- Input in Overlaypanel won't have focus [\#12284](https://github.com/primefaces/primeng/issues/12284)
+- Header of scrollable Table covers menubar menu [\#12281](https://github.com/primefaces/primeng/issues/12281)
+- Component: Block UI - JEST error when destroy component if 'mask' is undefined [\#12254](https://github.com/primefaces/primeng/issues/12254)
+- tsConfig target:"ES2022" causes reference error on Safari v15.6 [\#12302](https://github.com/primefaces/primeng/issues/12302)
+
 ## [15.0.0-rc.1](https://github.com/primefaces/primeng/tree/15.0.0-rc.1) (2022-11-22)
 
 [Full Changelog](https://github.com/primefaces/primeng/compare/14.2.2...15.0.0-rc.1)

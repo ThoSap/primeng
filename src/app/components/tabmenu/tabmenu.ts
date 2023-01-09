@@ -1,4 +1,22 @@
-import { NgModule, Component, Input, ContentChildren, QueryList, AfterContentInit, AfterViewInit, AfterViewChecked, TemplateRef, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, ElementRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import {
+    NgModule,
+    Component,
+    Input,
+    Output,
+    ContentChildren,
+    QueryList,
+    AfterContentInit,
+    AfterViewInit,
+    AfterViewChecked,
+    TemplateRef,
+    ChangeDetectionStrategy,
+    ViewEncapsulation,
+    ViewChild,
+    ElementRef,
+    ChangeDetectorRef,
+    OnDestroy,
+    EventEmitter
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { PrimeTemplate, SharedModule, MenuItem } from 'primeng/api';
@@ -98,6 +116,8 @@ export class TabMenu implements AfterContentInit, AfterViewInit, AfterViewChecke
 
     @Input() activeItem: MenuItem;
 
+    @Output() activeItemChange = new EventEmitter<MenuItem>();
+
     @Input() scrollable: boolean;
 
     @Input() popup: boolean;
@@ -165,7 +185,7 @@ export class TabMenu implements AfterContentInit, AfterViewInit, AfterViewChecke
         if (item.routerLink) {
             const routerLink = Array.isArray(item.routerLink) ? item.routerLink : [item.routerLink];
 
-            return this.router.isActive(this.router.createUrlTree(routerLink, { relativeTo: this.route }).toString(), false);
+            return this.router.isActive(this.router.createUrlTree(routerLink, { relativeTo: this.route }).toString(), item.routerLinkActiveOptions?.exact ?? item.routerLinkActiveOptions ?? false);
         }
 
         return item === this.activeItem;
@@ -189,6 +209,7 @@ export class TabMenu implements AfterContentInit, AfterViewInit, AfterViewChecke
         }
 
         this.activeItem = item;
+        this.activeItemChange.emit(item);
         this.tabChanged = true;
     }
 

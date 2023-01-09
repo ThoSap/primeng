@@ -146,6 +146,7 @@ export class TableService {
                     [showSpacer]="false"
                     [showLoader]="loadingBodyTemplate"
                     [options]="virtualScrollOptions"
+                    [autoSize]="true"
                 >
                     <ng-template pTemplate="content" let-items let-scrollerOptions="options">
                         <ng-container *ngTemplateOutlet="buildInTable; context: { $implicit: items, options: scrollerOptions }"></ng-container>
@@ -311,7 +312,7 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
 
     @Input() exportFilename: string = 'download';
 
-    @Input() filters: { [s: string]: FilterMetadata | FilterMetadata[] } = {};
+    @Input() filters: { [s: string]: FilterMetadata | FilterMetadata[] | undefined } = {};
 
     @Input() globalFilterFields: string[];
 
@@ -1735,6 +1736,8 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
 
         if (options && options.selectionOnly) {
             data = this.selection || [];
+        } else if (options && options.allValues) {
+            data = this.value || [];
         } else {
             data = this.filteredValue || this.value;
 
@@ -2319,7 +2322,7 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         state.columnWidths = widths.join(',');
 
         if (this.columnResizeMode === 'expand') {
-            state.tableWidth = DomHandler.getOuterWidth(this.tableViewChild.nativeElement) + 'px';
+            state.tableWidth = DomHandler.getOuterWidth(this.tableViewChild.nativeElement);
         }
     }
 
@@ -3466,8 +3469,17 @@ export class EditableColumn implements AfterViewInit, OnDestroy {
     }
 
     closeEditingCell(completed, event) {
-        if (completed) this.dt.onEditComplete.emit({ field: this.dt.editingCellField, data: this.dt.editingCellData, originalEvent: event, index: this.dt.editingCellRowIndex });
-        else this.dt.onEditCancel.emit({ field: this.dt.editingCellField, data: this.dt.editingCellData, originalEvent: event, index: this.dt.editingCellRowIndex });
+        if (completed) {
+            this.dt.onEditComplete.emit({ field: this.dt.editingCellField, data: this.data, originalEvent: event, index: this.dt.editingCellRowIndex });
+        } else {
+            this.dt.onEditCancel.emit({ field: this.dt.editingCellField, data: this.dt.editingCellData, originalEvent: event, index: this.dt.editingCellRowIndex });
+
+            this.dt.value.forEach((element) => {
+                if (element[this.dt.editingCellField] === this.data) {
+                    element[this.dt.editingCellField] = this.dt.editingCellData;
+                }
+            });
+        }
 
         DomHandler.removeClass(this.dt.editingCell, 'p-cell-editing');
         this.dt.editingCell = null;
@@ -4074,8 +4086,6 @@ export class TableHeaderCheckbox {
     }
 })
 export class ReorderableRowHandle implements AfterViewInit {
-    @Input('pReorderableRowHandle') index: number;
-
     constructor(public el: ElementRef) {}
 
     ngAfterViewInit() {
